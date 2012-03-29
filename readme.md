@@ -1,11 +1,21 @@
 # Development DNS Server
 
-Resolves all lookups for any hostname matching a given regex to `127.0.0.1`
+Are you fed up with maintaining a host file that looks like this:
 
-No more host file editing!
+{{{
+127.0.0.1 SiteA
+127.0.0.1 SiteB
+127.0.0.1 SiteC
+127.0.0.1 SiteD
+}}}
 
-Win.
+By using a convention such as a top level domain of `.dev`, this simple DNS Server will answer all lookups for those addresses with `127.0.0.1`
 
+This means you can access `anything.dev` and it will resolve to your machine. Much like `*.mymachine.me`, but without the prerequisite of internet access.
+
+## Configuration
+
+Edit the regex in the `app.config` to match your particular local dev hostname pattern.
 
 ## Usage
 
