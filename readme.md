@@ -2,12 +2,12 @@
 
 Are you fed up with maintaining a host file that looks like this:
 
-{{{
+<pre>
 127.0.0.1 SiteA
 127.0.0.1 SiteB
 127.0.0.1 SiteC
 127.0.0.1 SiteD
-}}}
+</pre>
 
 By using a convention such as a top level domain of `.dev`, this simple DNS Server will answer all lookups for those addresses with `127.0.0.1`
 
