@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.Net;
 using System.Net.Sockets;
+using System.Text.RegularExpressions;
 using ARSoft.Tools.Net.Dns;
 using Topshelf;
 
@@ -8,8 +10,12 @@ namespace DnsServer
 {
 	class Program
 	{
+		static Regex hostRegex;
+
 		static void Main(string[] args)
 		{
+			hostRegex = new Regex(ConfigurationManager.AppSettings["LocalRegex"], RegexOptions.IgnoreCase);
+
 			HostFactory.Run(x =>
 			{
 				x.Service<ARSoft.Tools.Net.Dns.DnsServer>(s =>
@@ -35,7 +41,7 @@ namespace DnsServer
 			{
 				var question = query.Questions[0];
 
-				if(question.Name.EndsWith(".dev", StringComparison.InvariantCultureIgnoreCase))
+				if(hostRegex.IsMatch(question.Name))
 				{
 					query.ReturnCode = ReturnCode.NoError;
 					query.AnswerRecords.Add(new ARecord(question.Name, 1, IPAddress.Parse("127.0.0.1")));
