@@ -9,9 +9,8 @@ Win.
 
 ## Usage
 
-Update the app config and set `ForwardingDNSServer` to your current DNS server
-
-Change your DNS server to be `127.0.0.1`
+Change your primary DNS server to be `127.0.0.1`, and your secondary DNS server to whatever your primary one was.
+If there is no explicit primary DNS server, run `ipconfig /all` to find out what your DNS server is.
 
 Run `install.bat`
 
