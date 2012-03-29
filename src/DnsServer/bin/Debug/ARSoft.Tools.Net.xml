@@ -1,0 +1,620 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ARSoft.Tools.Net</name>
+    </assembly>
+    <members>
+        <member name="T:ARSoft.Tools.Net.Spf.SpfValidator">
+            <summary>
+            Validator for SPF records
+            </summary>
+        </member>
+        <member name="T:ARSoft.Tools.Net.Spf.ValidatorBase`1">
+            <summary>
+            Base implementation of a validator for SPF and SenderID records
+            </summary>
+            <typeparam name="T">Type of the record</typeparam>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Spf.ValidatorBase`1.CheckHost(System.Net.IPAddress,System.String,System.String)">
+            <summary>
+            Validates the record(s)
+            </summary>
+            <param name="ip">The IP address of the SMTP client that is emitting the mail</param>
+            <param name="domain">The domain portion of the "MAIL FROM" or "HELO" identity</param>
+            <param name="sender">The "MAIL FROM" or "HELO" identity</param>
+            <returns>The result of the evaluation</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Spf.ValidatorBase`1.CheckHost(System.Net.IPAddress,System.String,System.String,System.String@)">
+            <summary>
+            Validates the record(s)
+            </summary>
+            <param name="ip">The IP address of the SMTP client that is emitting the mail</param>
+            <param name="domain">The domain portion of the "MAIL FROM" or "HELO" identity</param>
+            <param name="sender">The "MAIL FROM" or "HELO" identity</param>
+            <param name="explanation">A explanation in case of result Fail</param>
+            <returns>The result of the evaluation</returns>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Spf.ValidatorBase`1.HeloDomain">
+            <summary>
+            Domain name which was used in HELO/EHLO
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Spf.ValidatorBase`1.LocalIP">
+            <summary>
+            IP address of the computer validating the record
+            <remarks>Default is the first IP the computer</remarks>
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Spf.ValidatorBase`1.LocalDomain">
+            <summary>
+            Name of the computer validating the record
+            <remarks>Default is the computer name</remarks>
+            </summary>
+        </member>
+        <member name="T:ARSoft.Tools.Net.Dns.DnsClient">
+            <summary>
+            Provides a client for querying dns records
+            </summary>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.#ctor(System.Net.IPAddress,System.Int32)">
+            <summary>
+            Provides a new instance with custom dns server and query timeout
+            </summary>
+            <param name="dnsServers">The IPAddress of the dns server to use</param>
+            <param name="queryTimeout">Query timeout in milliseconds</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.#ctor(System.Collections.Generic.List{System.Net.IPAddress},System.Int32)">
+            <summary>
+            Provides a new instance with custom dns servers and query timeout
+            </summary>
+            <param name="dnsServers">The IPAddresses of the dns servers to use</param>
+            <param name="queryTimeout">Query timeout in milliseconds</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.Resolve(System.String)">
+            <summary>
+            Queries a dns server for address records.
+            </summary>
+            <param name="name">Domain, that should be queried</param>
+            <returns>The complete response of the dns server</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.Resolve(System.String,ARSoft.Tools.Net.Dns.RecordType)">
+            <summary>
+            Queries a dns server for specified records.
+            </summary>
+            <param name="name">Domain, that should be queried</param>
+            <param name="recordType">Recordtype the should be queried</param>
+            <returns>The complete response of the dns server</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.Resolve(System.String,ARSoft.Tools.Net.Dns.RecordType,ARSoft.Tools.Net.Dns.RecordClass)">
+            <summary>
+            Queries a dns server for specified records.
+            </summary>
+            <param name="name">Domain, that should be queried</param>
+            <param name="recordType">Type the should be queried</param>
+            <param name="recordClass">Class the should be queried</param>
+            <returns>The complete response of the dns server</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.BeginResolve(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Queries a dns server for specified records asynchronously.
+            </summary>
+            <param name="name">Domain, that should be queried</param>
+            <param name="requestCallback">An <see cref="T:System.AsyncCallback"/> delegate that references the method to invoked then the operation is complete.</param>
+            <param name="state">A user-defined object that contains information about the receive operation. This object is passed to the <paramref name="requestCallback"/> delegate when the operation is complete.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> IAsyncResult object that references the asynchronous receive.</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.BeginResolve(System.String,ARSoft.Tools.Net.Dns.RecordType,System.AsyncCallback,System.Object)">
+            <summary>
+            Queries a dns server for specified records asynchronously.
+            </summary>
+            <param name="name">Domain, that should be queried</param>
+            <param name="recordType">Type the should be queried</param>
+            <param name="requestCallback">An <see cref="T:System.AsyncCallback"/> delegate that references the method to invoked then the operation is complete.</param>
+            <param name="state">A user-defined object that contains information about the receive operation. This object is passed to the <paramref name="requestCallback"/> delegate when the operation is complete.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> IAsyncResult object that references the asynchronous receive.</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.BeginResolve(System.String,ARSoft.Tools.Net.Dns.RecordType,ARSoft.Tools.Net.Dns.RecordClass,System.AsyncCallback,System.Object)">
+            <summary>
+            Queries a dns server for specified records asynchronously.
+            </summary>
+            <param name="name">Domain, that should be queried</param>
+            <param name="recordType">Type the should be queried</param>
+            <param name="recordClass">Class the should be queried</param>
+            <param name="requestCallback">An <see cref="T:System.AsyncCallback"/> delegate that references the method to invoked then the operation is complete.</param>
+            <param name="state">A user-defined object that contains information about the receive operation. This object is passed to the <paramref name="requestCallback"/> delegate when the operation is complete.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> IAsyncResult object that references the asynchronous receive.</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.EndResolve(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous operation.
+            </summary>
+            <param name="ar">An <see cref="T:System.IAsyncResult"/> object returned by a call to <see cref="M:ARSoft.Tools.Net.Dns.DnsClient.BeginResolve(System.String,System.AsyncCallback,System.Object)"/>.</param>
+            <returns>The complete response of the dns server</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.SendMessage(ARSoft.Tools.Net.Dns.DnsMessage)">
+            <summary>
+            Send a custom message to the dns server and returns the answer.
+            </summary>
+            <param name="message">Message, that should be send to the dns server</param>
+            <returns>The complete response of the dns server</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.SendUpdate(ARSoft.Tools.Net.Dns.DynamicUpdate.DnsUpdateMessage)">
+            <summary>
+            Send an dynamic update to the dns server and returns the answer.
+            </summary>
+            <param name="message">Update, that should be send to the dns server</param>
+            <returns>The complete response of the dns server</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.BeginSendMessage(ARSoft.Tools.Net.Dns.DnsMessage,System.AsyncCallback,System.Object)">
+            <summary>
+            Send a custom message to the dns server and returns the answer asynchronously.
+            </summary>
+            <param name="message">Message, that should be send to the dns server</param>
+            <param name="requestCallback">An <see cref="T:System.AsyncCallback"/> delegate that references the method to invoked then the operation is complete.</param>
+            <param name="state">A user-defined object that contains information about the receive operation. This object is passed to the <paramref name="requestCallback"/> delegate when the operation is complete.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> IAsyncResult object that references the asynchronous receive.</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsClient.EndSendMessage(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous operation.
+            </summary>
+            <param name="ar">An <see cref="T:System.IAsyncResult"/> object returned by a call to <see cref="M:ARSoft.Tools.Net.Dns.DnsClient.BeginSendMessage(ARSoft.Tools.Net.Dns.DnsMessage,System.AsyncCallback,System.Object)"/>.</param>
+            <returns>The complete response of the dns server</returns>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsClient.Default">
+            <summary>
+            Returns a default instance of the DnsClient, which uses the configured dns servers of the executing computer and a query timeout of 10 seconds.
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessageBase.AdditionalRecords">
+            <summary>
+            Gets or sets the entries in the additional records section
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessageBase.TransactionID">
+            <summary>
+            Gets or sets the transaction identifier (ID) of the message
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessageBase.IsQuery">
+            <summary>
+            Gets or sets the query (QR) flag
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessageBase.OperationCode">
+            <summary>
+            Gets or sets the Operation Code (OPCODE)
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessageBase.ReturnCode">
+            <summary>
+            Gets or sets the return code (RCODE)
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessageBase.IsEDnsEnabled">
+            <summary>
+            Enables or disables EDNS
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessageBase.EDnsOptions">
+            <summary>
+            Gets or set the OptRecord for the EDNS options
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessageBase.IsDnsSecOk">
+            <summary>
+            Gets or sets the DNSSEC OK (DO) flag
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessageBase.TSigOptions">
+            <summary>
+            Gets or set the TSigRecord for the tsig signed messages
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DynamicUpdate.DnsUpdateMessage.ZoneName">
+            <summary>
+            Gets or sets the zone name
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DynamicUpdate.DnsUpdateMessage.Prequisites">
+            <summary>
+            Gets or sets the entries in the prerequisites section
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DynamicUpdate.DnsUpdateMessage.Updates">
+            <summary>
+            Gets or sets the entries in the update section
+            </summary>
+        </member>
+        <member name="T:ARSoft.Tools.Net.Spf.SenderIDRecord">
+            <summary>
+            Parsed instance of the textual representation of a SenderID record
+            </summary>
+        </member>
+        <member name="T:ARSoft.Tools.Net.Spf.SpfRecordBase">
+            <summary>
+            Base class of a SPF or SenderID record
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Spf.SpfRecordBase.Terms">
+            <summary>
+            Modifiers and mechanisms of a record
+            </summary>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Spf.SenderIDRecord.IsSenderIDRecord(System.String,ARSoft.Tools.Net.Spf.SenderIDScope)">
+            <summary>
+            Checks, whether a given string starts with a correct SenderID prefix of a given scope
+            </summary>
+            <param name="s">Textual representation to check</param>
+            <param name="scope">Scope, which should be matched</param>
+            <returns>true in case of correct prefix</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Spf.SenderIDRecord.TryParse(System.String,ARSoft.Tools.Net.Spf.SenderIDRecord@)">
+            <summary>
+            Tries to parse the textual representation of a SenderID record
+            </summary>
+            <param name="s">Textual representation to check</param>
+            <param name="value">Parsed SenderID record in case of successful parsing</param>
+            <returns>true in case of successful parsing</returns>
+        </member>
+        <member name="T:ARSoft.Tools.Net.Dns.DnsServer">
+            <summary>
+            Provides a base dns server interface
+            </summary>
+        </member>
+        <member name="F:ARSoft.Tools.Net.Dns.DnsServer.TsigKeySelector">
+            <summary>
+            Method that will be called to get the keydata for processing a tsig signed message
+            </summary>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsServer.#ctor(System.Int32,System.Int32,ARSoft.Tools.Net.Dns.DnsServer.ProcessQuery)">
+            <summary>
+            Creates a new dns server instance which will listen on all available interfaces
+            </summary>
+            <param name="udpListenerCount">The count of threads listings on udp, 0 to deactivate udp</param>
+            <param name="tcpListenerCount">The count of threads listings on tcp, 0 to deactivate tcp</param>
+            <param name="processQuery">Method, which process the queries and returns the response</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsServer.#ctor(System.Net.IPAddress,System.Int32,System.Int32,ARSoft.Tools.Net.Dns.DnsServer.ProcessQuery)">
+            <summary>
+            Creates a new dns server instance
+            </summary>
+            <param name="bindAddress">The address, on which should be listend</param>
+            <param name="udpListenerCount">The count of threads listings on udp, 0 to deactivate udp</param>
+            <param name="tcpListenerCount">The count of threads listings on tcp, 0 to deactivate tcp</param>
+            <param name="processQuery">Method, which process the queries and returns the response</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsServer.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32,ARSoft.Tools.Net.Dns.DnsServer.ProcessQuery)">
+            <summary>
+            Creates a new dns server instance
+            </summary>
+            <param name="bindEndPoint">The endpoint, on which should be listend</param>
+            <param name="udpListenerCount">The count of threads listings on udp, 0 to deactivate udp</param>
+            <param name="tcpListenerCount">The count of threads listings on tcp, 0 to deactivate tcp</param>
+            <param name="processQuery">Method, which process the queries and returns the response</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsServer.Start">
+            <summary>
+            Starts the server
+            </summary>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Dns.DnsServer.Stop">
+            <summary>
+            Stops the server
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsServer.Timeout">
+            <summary>
+            Gets or sets the timeout for sending and receiving data
+            </summary>
+        </member>
+        <member name="E:ARSoft.Tools.Net.Dns.DnsServer.ExceptionThrown">
+            <summary>
+            This event is fired on exceptions of the listeners. You can use it for custom logging.
+            </summary>
+        </member>
+        <member name="E:ARSoft.Tools.Net.Dns.DnsServer.InvalidSignedMessageReceived">
+            <summary>
+            This event is fired whenever a message is received, that is not correct signed
+            </summary>
+        </member>
+        <member name="T:ARSoft.Tools.Net.Dns.DnsServer.ProcessQuery">
+            <summary>
+            Represents the method, that will be called to get the response for a specific dns query
+            </summary>
+            <param name="query">The query, for that a response should be returned</param>
+            <param name="clientAddress">The ip address from which the queries comes</param>
+            <param name="protocolType">The protocol which was used for the query</param>
+            <returns>A DnsMessage with the response to the query</returns>
+        </member>
+        <member name="T:ARSoft.Tools.Net.Dns.DnsServer.SelectTsigKey">
+            <summary>
+            Represents the method, that will be called to get the keydata for processing a tsig signed message
+            </summary>
+            <param name="algorithm">The algorithm which is used in the message</param>
+            <param name="keyName">The keyname which is used in the message</param>
+            <returns>Binary representation of the key</returns>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessage.IsAuthoritiveAnswer">
+            <summary>
+            Gets or sets the autoritive answer (AA) flag
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessage.IsTruncated">
+            <summary>
+            Gets or sets the truncated (TC) flag
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessage.IsRecursionDesired">
+            <summary>
+            Gets or sets the recursion desired (RD) flag
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessage.IsRecursionAllowed">
+            <summary>
+            Gets or sets the recursion allowed (RA) flag
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessage.IsAuthenticData">
+            <summary>
+            Gets or sets the authentic data (AD) flag
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessage.IsCheckingDisabled">
+            <summary>
+            Gets or sets the checking disabled (CD) flag
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessage.Questions">
+            <summary>
+            Gets or sets the entries in the question section
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessage.AnswerRecords">
+            <summary>
+            Gets or sets the entries in the answer records section
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.DnsMessage.AuthorityRecords">
+            <summary>
+            Gets or sets the entries in the authority records section
+            </summary>
+        </member>
+        <member name="T:ARSoft.Tools.Net.Spf.SenderIDValidator">
+            <summary>
+            Validator for SenderID records
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Spf.SenderIDValidator.Scope">
+            <summary>
+            Scope to examin
+            </summary>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.FromBase16String(System.String)">
+            <summary>
+            Decodes a Base16 string as described in RFC4648.
+            </summary>
+            <param name="inData">An Base16 encoded string.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.FromBase16CharArray(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Decodes a Base16 char array as described in RFC4648.
+            </summary>
+            <param name="inData">An Base16 encoded char array.</param>
+            <param name="offset">An offset in inData.</param>
+            <param name="length">The number of elements of inData to decode.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.ToBase16String(System.Byte[])">
+            <summary>
+            Converts a byte array to its corresponding Base16 encoding described in RFC4648.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.ToBase16String(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Converts a byte array to its corresponding Base16 encoding described in RFC4648.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+            <param name="offset">An offset in inArray.</param>
+            <param name="length">The number of elements of inArray to convert.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.FromBase32String(System.String)">
+            <summary>
+            Decodes a Base32 string as described in RFC4648.
+            </summary>
+            <param name="inData">An Base32 encoded string.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.FromBase32CharArray(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Decodes a Base32 char array as described in RFC4648.
+            </summary>
+            <param name="inData">An Base32 encoded char array.</param>
+            <param name="offset">An offset in inData.</param>
+            <param name="length">The number of elements of inData to decode.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.ToBase32String(System.Byte[])">
+            <summary>
+            Converts a byte array to its corresponding Base32 encoding described in RFC4648.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.ToBase32String(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Converts a byte array to its corresponding Base32 encoding described in RFC4648.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+            <param name="offset">An offset in inArray.</param>
+            <param name="length">The number of elements of inArray to convert.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.FromBase32HexString(System.String)">
+            <summary>
+            Decodes a Base32Hex string as described in RFC4648.
+            </summary>
+            <param name="inData">An Base32Hex encoded string.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.FromBase32HexCharArray(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Decodes a Base32Hex char array as described in RFC4648.
+            </summary>
+            <param name="inData">An Base32Hex encoded char array.</param>
+            <param name="offset">An offset in inData.</param>
+            <param name="length">The number of elements of inData to decode.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.ToBase32HexString(System.Byte[])">
+            <summary>
+            Converts a byte array to its corresponding Base32Hex encoding described in RFC4648.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.ToBase32HexString(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Converts a byte array to its corresponding Base32Hex encoding described in RFC4648.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+            <param name="offset">An offset in inArray.</param>
+            <param name="length">The number of elements of inArray to convert.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.FromBase64String(System.String)">
+            <summary>
+            Decodes a Base64 string as described in RFC4648.
+            </summary>
+            <param name="inData">An Base64 encoded string.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.FromBase64CharArray(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Decodes a Base64 char array as described in RFC4648.
+            </summary>
+            <param name="inData">An Base64 encoded char array.</param>
+            <param name="offset">An offset in inData.</param>
+            <param name="length">The number of elements of inData to decode.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.ToBase64String(System.Byte[])">
+            <summary>
+            Converts a byte array to its corresponding Base64 encoding described in RFC4648.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.ToBase64String(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Converts a byte array to its corresponding Base64 encoding described in RFC4648.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+            <param name="offset">An offset in inArray.</param>
+            <param name="length">The number of elements of inArray to convert.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.FromBase64UrlString(System.String)">
+            <summary>
+            Decodes a Base64Url string as described in RFC4648.
+            </summary>
+            <param name="inData">An Base64Url encoded string.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.FromBase64UrlCharArray(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Decodes a Base64Url char array as described in RFC4648.
+            </summary>
+            <param name="inData">An Base64Url encoded char array.</param>
+            <param name="offset">An offset in inData.</param>
+            <param name="length">The number of elements of inData to decode.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.ToBase64UrlString(System.Byte[])">
+            <summary>
+            Converts a byte array to its corresponding Base64Url encoding described in RFC4648.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+        </member>
+        <member name="M:ARSoft.Tools.Net.BaseEncoding.ToBase64UrlString(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Converts a byte array to its corresponding Base64Url encoding described in RFC4648.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+            <param name="offset">An offset in inArray.</param>
+            <param name="length">The number of elements of inArray to convert.</param>
+        </member>
+        <member name="T:ARSoft.Tools.Net.Spf.SpfRecord">
+            <summary>
+            Parsed instance of the textual representation of a SPF record
+            </summary>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Spf.SpfRecord.IsSpfRecord(System.String)">
+            <summary>
+            Checks, whether a given string starts with a correct SPF prefix
+            </summary>
+            <param name="s">Textual representation to check</param>
+            <returns>true in case of correct prefix</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Spf.SpfRecord.TryParse(System.String,ARSoft.Tools.Net.Spf.SpfRecord@)">
+            <summary>
+            Tries to parse the textual representation of a SPF string
+            </summary>
+            <param name="s">Textual representation to check</param>
+            <param name="value">Parsed spf record in case of successful parsing</param>
+            <returns>true in case of successful parsing</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.Spf.SpfRecord.CheckHost(System.Net.IPAddress,System.String,System.String,System.String,System.String)">
+            <summary>
+            Validates the SPF records
+            </summary>
+            <param name="clientAddress">The IP address of the SMTP client that is emitting the mail</param>
+            <param name="clientName">Parameter is not more in use, only for signature compability</param>
+            <param name="heloName">Domain name which was used in HELO/EHLO</param>
+            <param name="domain">The domain portion of the "MAIL FROM" or "HELO" identity</param>
+            <param name="sender">The "MAIL FROM" or "HELO" identity</param>
+            <returns>Result of the evaluation</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.IPAddressExtension.Reverse(System.Net.IPAddress)">
+            <summary>
+            Reverses the order of the bytes of an IPAddress
+            </summary>
+            <param name="ipAddress">Instance of the IPAddress, that should be reversed</param>
+            <returns>New instance of IPAddress with reversed address</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.IPAddressExtension.GetNetworkAddress(System.Net.IPAddress,System.Net.IPAddress)">
+            <summary>
+            Gets the network address for a specified IPAddress and netmask
+            </summary>
+            <param name="ipAddress">IPAddress, for that the network address should be returned</param>
+            <param name="netmask">Netmask, that should be used</param>
+            <returns>New instance of IPAddress with the network address assigend</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.IPAddressExtension.GetNetworkAddress(System.Net.IPAddress,System.Int32)">
+            <summary>
+            Gets the network address for a specified IPAddress and netmask
+            </summary>
+            <param name="ipAddress">IPAddress, for that the network address should be returned</param>
+            <param name="netmask">Netmask in CIDR format</param>
+            <returns>New instance of IPAddress with the network address assigend</returns>
+        </member>
+        <member name="M:ARSoft.Tools.Net.IPAddressExtension.GetReverseLookupAddress(System.Net.IPAddress)">
+            <summary>
+            Returns the reverse lookup address of an IPAddress
+            </summary>
+            <param name="ipAddress">Instance of the IPAddress, that should be used</param>
+            <returns>A string with the reverse lookup address</returns>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.OptRecord.UpdPayloadSize">
+            <summary>
+            Gets or set the sender's UDP payload size
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.OptRecord.ExtendedReturnCode">
+            <summary>
+            Gets or sets the high bits of return code (EXTENDED-RCODE)
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.OptRecord.Version">
+            <summary>
+            Gets or set the EDNS version
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.OptRecord.IsDnsSecOk">
+            <summary>
+            Gets or sets the DNSSEC OK (DO) flag
+            </summary>
+        </member>
+        <member name="P:ARSoft.Tools.Net.Dns.OptRecord.Options">
+            <summary>
+            Gets or set additional EDNS options
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1 @@
+call DnsServer.exe uninstall
