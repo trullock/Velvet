@@ -14,3 +14,12 @@ E:\DnsServer\DnsServer\bin\Debug\log4net.xml
 E:\GitHub\DevelopmentDnsServer\src\DnsServer\bin\Debug\DnsServer.exe.config
 E:\GitHub\DevelopmentDnsServer\src\DnsServer\obj\x86\Debug\DnsServer.exe
 E:\GitHub\DevelopmentDnsServer\src\DnsServer\obj\x86\Debug\DnsServer.pdb
+E:\GitHub\DevelopmentDnsServer\src\DnsServer\bin\Debug\install.bat
+E:\GitHub\DevelopmentDnsServer\src\DnsServer\bin\Debug\uninstall.bat
+E:\GitHub\DevelopmentDnsServer\src\DnsServer\bin\Debug\DnsServer.exe
+E:\GitHub\DevelopmentDnsServer\src\DnsServer\bin\Debug\DnsServer.pdb
+E:\GitHub\DevelopmentDnsServer\src\DnsServer\bin\Debug\ARSoft.Tools.Net.xml
+E:\GitHub\DevelopmentDnsServer\src\DnsServer\bin\Debug\log4net.xml
+E:\GitHub\DevelopmentDnsServer\src\DnsServer\bin\Debug\Topshelf.pdb
+E:\GitHub\DevelopmentDnsServer\src\DnsServer\bin\Debug\Topshelf.xml
+E:\GitHub\DevelopmentDnsServer\src\DnsServer\obj\x86\Debug\ResolveAssemblyReference.cache

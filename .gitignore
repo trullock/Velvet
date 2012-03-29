@@ -1,0 +1,14 @@
+Thumbs.db
+*.obj
+*.exe
+*.pdb
+*.user
+*.suo
+[Bb]in
+[Dd]ebug*/
+obj/
+_cache
+_ReSharper*/
+*.user
+*.resharper*
+*.wrap
