@@ -13,6 +13,7 @@ namespace Velvet.Tests
 	{
 		IEnumerable<Mapping> mappings;
 		string tempPath;
+		HostsWatcher hostsWatcher;
 
 		[SetUp]
 		public void SetUp()
@@ -21,8 +22,8 @@ namespace Velvet.Tests
 			using (var streamWriter = File.CreateText(this.tempPath))
 				streamWriter.WriteLine();
 
-			var hostsWatcher = new HostsWatcher(this.tempPath);
-			hostsWatcher.MappingsChanged += this.HostsWatcherMappingsChanged;
+			this.hostsWatcher = new HostsWatcher(this.tempPath);
+			this.hostsWatcher.MappingsChanged += this.HostsWatcherMappingsChanged;
 
 			using (var streamWriter = File.CreateText(this.tempPath))
 			{
@@ -69,6 +70,7 @@ namespace Velvet.Tests
 		[TearDown]
 		public void TearDown()
 		{
+			this.hostsWatcher.Dispose();
 			File.Delete(tempPath);
 		}
 
