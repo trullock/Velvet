@@ -1,33 +1,39 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 
-namespace DnsServer
+namespace Velvet
 {
-	internal sealed class HostsWatcher : IDisposable
+	internal sealed class HostsWatcher : IDisposable, IHostsWatcher
 	{
-		FileSystemWatcher watcher;
-
-		public delegate void MappingsChangedHandler(MappingEventArgs args);
+		readonly FileSystemWatcher watcher;
+		readonly IHostsParser parser;
 
 		public event MappingsChangedHandler MappingsChanged;
 
 		public HostsWatcher(string path)
+			: this(new HostsParser(), path)
 		{
-			//var path = Path.GetFullPath(Path.Combine(Environment.GetEnvironmentVariable("SystemRoot"), "system32/drivers/etc/hosts"));
+		}
+
+		public HostsWatcher(IHostsParser parser, string path)
+		{
+			this.parser = parser;
+
 			var directoryName = Path.GetDirectoryName(path);
 			var fileName = Path.GetFileName(path);
+
 			this.watcher = new FileSystemWatcher(directoryName, fileName);
 			watcher.NotifyFilter = NotifyFilters.LastWrite;
-			this.watcher.Changed += this.watcher_Changed;
+
+			this.watcher.Changed += this.WatcherChanged;
+
 			watcher.EnableRaisingEvents = true;
 		}
 
-		void watcher_Changed(object sender, FileSystemEventArgs e)
+		void WatcherChanged(object sender, FileSystemEventArgs e)
 		{
 			var readFile = ReadFile(e.FullPath);
-			var enumerable = ParseFile(readFile);
+			var enumerable = parser.ParseFile(readFile);
 			if(MappingsChanged != null)
 				MappingsChanged(new MappingEventArgs(enumerable));
 		}
@@ -36,25 +42,6 @@ namespace DnsServer
 		{
 			using (var reader = new StreamReader(path))
 				return reader.ReadToEnd();
-		}
-
-		static IEnumerable<Mapping> ParseFile(string file)
-		{
-			var lines = file.Split(new[] {"\n"}, StringSplitOptions.RemoveEmptyEntries);
-
-			var lineRegex = new Regex(@"([^\s]+)\s(.*?)", RegexOptions.Singleline);
-
-			foreach(var line in lines)
-			{
-				var trimmed = line.Trim();
-
-				var match = lineRegex.Match(trimmed);
-				
-				if(!match.Success)
-					continue;
-
-				yield return new Mapping(match.Groups[1].Value, match.Groups[2].Value);
-			}
 		}
 
 		public void Dispose()

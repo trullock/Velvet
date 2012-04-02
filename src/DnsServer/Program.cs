@@ -1,56 +1,28 @@
 ﻿using System;
-using System.Configuration;
-using System.Net;
-using System.Net.Sockets;
-using System.Text.RegularExpressions;
-using ARSoft.Tools.Net.Dns;
+using System.IO;
 using Topshelf;
 
-namespace DnsServer
+namespace Velvet
 {
-	class Program
+	static class Program
 	{
-		static Regex hostRegex;
-
 		static void Main(string[] args)
 		{
-			hostRegex = new Regex(ConfigurationManager.AppSettings["LocalRegex"], RegexOptions.IgnoreCase);
+			var hostsPath = Path.GetFullPath(Path.Combine(Environment.GetEnvironmentVariable("SystemRoot"), "system32/drivers/etc/hosts"));
 
 			HostFactory.Run(x =>
 			{
-				x.Service<ARSoft.Tools.Net.Dns.DnsServer>(s =>
+				x.Service<VelvetService>(s =>
 				{
-					s.SetServiceName("Dev DNS Server");
-					s.ConstructUsing(name => new ARSoft.Tools.Net.Dns.DnsServer(IPAddress.Any, 10, 10, ProcessQuery));
+					s.SetServiceName("Velvet");
+					s.ConstructUsing(name => new VelvetService(hostsPath));
 					s.WhenStarted(r => r.Start());
 					s.WhenStopped(r => r.Stop());
 				});
-				x.SetDescription("Maps any .dev address to localhost");
-				x.SetDisplayName("Dev DNS Server");
-				x.SetServiceName("Dev DNS Server");
+				x.SetDescription("Provides regex capabilities in you hosts file");
+				x.SetDisplayName("Velvet");
+				x.SetServiceName("Velvet");
 			});
-		}
-
-		static DnsMessageBase ProcessQuery(DnsMessageBase message, IPAddress clientAddress, ProtocolType protocol)
-		{
-			message.IsQuery = false;
-
-			var query = message as DnsMessage;
-
-			if ((query != null) && (query.Questions.Count == 1))
-			{
-				var question = query.Questions[0];
-
-				if(hostRegex.IsMatch(question.Name))
-				{
-					query.ReturnCode = ReturnCode.NoError;
-					query.AnswerRecords.Add(new ARecord(question.Name, 1, IPAddress.Parse("127.0.0.1")));
-					return query;
-				}
-			}
-
-			message.ReturnCode = ReturnCode.ServerFailure;
-			return message;
 		}
 	}
 }

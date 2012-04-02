@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DnsServer
+namespace Velvet
 {
 	internal sealed class MappingEventArgs : EventArgs
 	{

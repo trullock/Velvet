@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnsServer", "DnsServer\DnsServer.csproj", "{E4E9F400-53CF-4B70-B475-76F0070A0CF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Velvet", "DnsServer\Velvet.csproj", "{E4E9F400-53CF-4B70-B475-76F0070A0CF1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stuffs", "Stuffs", "{1ED55695-06EE-4638-B258-0D6FFBAF52F1}"
 	ProjectSection(SolutionItems) = preProject

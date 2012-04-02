@@ -8,8 +8,8 @@
     <ProjectGuid>{E4E9F400-53CF-4B70-B475-76F0070A0CF1}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DnsServer</RootNamespace>
-    <AssemblyName>DnsServer</AssemblyName>
+    <RootNamespace>Velvet</RootNamespace>
+    <AssemblyName>Velvet</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -54,11 +54,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ANameMapping.cs" />
+    <Compile Include="HostsParser.cs" />
     <Compile Include="HostsWatcher.cs" />
+    <Compile Include="IHostsParser.cs" />
+    <Compile Include="IHostsWatcher.cs" />
     <Compile Include="Mapping.cs" />
     <Compile Include="MappingEventArgs.cs" />
+    <Compile Include="MappingsChangedHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VelvetService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\install.bat">
