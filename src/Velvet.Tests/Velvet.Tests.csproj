@@ -31,7 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ARSoft.Tools.Net, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="ARSoft.Tools.Net, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\ARSoft.Tools.Net.1.6.0.bin\ARSoft.Tools.Net.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\lib\NUnit-2.6.0.12051\nunit.framework.dll</HintPath>
     </Reference>
@@ -44,7 +47,7 @@
     <Compile Include="DnsLookupSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DnsServer\Velvet.csproj">
+    <ProjectReference Include="..\Velvet\Velvet.csproj">
       <Project>{E4E9F400-53CF-4B70-B475-76F0070A0CF1}</Project>
       <Name>Velvet</Name>
     </ProjectReference>
