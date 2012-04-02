@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text.RegularExpressions;
+using Velvet.Mappings;
 
 namespace Velvet
 {
@@ -41,6 +42,8 @@ namespace Velvet
 					if (IPAddress.TryParse(match.Groups[1].Value, out ip))
 						return new ANameMapping(match.Groups[3].Value, ip);
 					return null;
+
+				// TODO: CName
 
 				default:
 					return null;

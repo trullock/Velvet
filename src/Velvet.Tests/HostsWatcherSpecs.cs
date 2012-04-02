@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using ARSoft.Tools.Net.Dns;
 using NUnit.Framework;
+using Velvet.Mappings;
 
 namespace Velvet.Tests
 {

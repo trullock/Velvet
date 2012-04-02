@@ -54,12 +54,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ANameMapping.cs" />
+    <Compile Include="Mappings\ANameMapping.cs" />
+    <Compile Include="DnsLookup.cs" />
     <Compile Include="HostsParser.cs" />
     <Compile Include="HostsWatcher.cs" />
+    <Compile Include="IDnsLookup.cs" />
     <Compile Include="IHostsParser.cs" />
     <Compile Include="IHostsWatcher.cs" />
-    <Compile Include="Mapping.cs" />
+    <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="MappingEventArgs.cs" />
     <Compile Include="MappingsChangedHandler.cs" />
     <Compile Include="Program.cs" />

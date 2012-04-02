@@ -1,8 +1,7 @@
-using System;
 using System.Text.RegularExpressions;
 using ARSoft.Tools.Net.Dns;
 
-namespace Velvet
+namespace Velvet.Mappings
 {
 	public abstract class Mapping
 	{

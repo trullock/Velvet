@@ -1,12 +1,20 @@
 ﻿using System.Net;
 using ARSoft.Tools.Net.Dns;
 
-namespace Velvet
+namespace Velvet.Mappings
 {
-	public sealed class ANameMapping : Mapping
+	/// <summary>
+	/// Represents a mapping for an A record
+	/// </summary>
+	internal sealed class ANameMapping : Mapping
 	{
 		readonly IPAddress ipAddress;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="pattern">The name pattern to match with</param>
+		/// <param name="ipAddress">The answer IP</param>
 		public ANameMapping(string pattern, IPAddress ipAddress) : base(pattern)
 		{
 			this.ipAddress = ipAddress;
