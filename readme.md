@@ -23,7 +23,7 @@ Edit your host file as you normally would, except the additional syntax is now s
 
 <pre>
 &lt;IP&gt; A &lt;Name Regex&gt;
-<pre>
+</pre>
 
 for example, to map `anything.dev` to `127.0.0.1`:
 
