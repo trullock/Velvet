@@ -22,7 +22,7 @@ This means you can access `anything.dev` and it will resolve to your machine. Mu
 Edit your host file as you normally would, except the additional syntax is now supported:
 
 <pre>
-&lt;IP&gt; &lt;A|C&gt; &lt;Name Regex&gt;
+&lt;IP|Name&gt; &lt;A|C&gt; &lt;Name Regex&gt;
 </pre>
 
 for example, to map `anything.dev` to `127.0.0.1`:
