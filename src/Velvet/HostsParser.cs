@@ -40,10 +40,12 @@ namespace Velvet
 				case "A":
 					IPAddress ip;
 					if (IPAddress.TryParse(match.Groups[1].Value, out ip))
-						return new ANameMapping(match.Groups[3].Value, ip);
+						return new AMapping(match.Groups[3].Value, ip);
 					return null;
 
-				// TODO: CName
+				case "C":
+					
+					return new CNameMapping(match.Groups[3].Value, match.Groups[1].Value);
 
 				default:
 					return null;

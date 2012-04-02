@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Velvet.Tests
 {
 	[TestFixture]
-	public class DnsLookupSpecs
+	public sealed class DnsLookupSpecs
 	{
 		string tempPath;
 		DnsLookup dnsLookup;

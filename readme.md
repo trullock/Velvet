@@ -31,9 +31,15 @@ for example, to map `anything.dev` to `127.0.0.1`:
 127.0.0.1 A \.dev$
 </pre>
 
+to map `sausages.com` to `bacon.com`:
+
+<pre>
+bacon.com C sausages\.com
+</pre>
+
 ### Limitations
 
-Currently, only IPv4 A records are supported.
+Currently, only IPv4 A and CName records are supported.
 
 ## Usage
 

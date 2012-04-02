@@ -6,7 +6,7 @@ namespace Velvet.Mappings
 	/// <summary>
 	/// Represents a mapping for an A record
 	/// </summary>
-	internal sealed class ANameMapping : Mapping
+	internal sealed class AMapping : Mapping
 	{
 		readonly IPAddress ipAddress;
 
@@ -15,7 +15,7 @@ namespace Velvet.Mappings
 		/// </summary>
 		/// <param name="pattern">The name pattern to match with</param>
 		/// <param name="ipAddress">The answer IP</param>
-		public ANameMapping(string pattern, IPAddress ipAddress) : base(pattern)
+		public AMapping(string pattern, IPAddress ipAddress) : base(pattern)
 		{
 			this.ipAddress = ipAddress;
 		}

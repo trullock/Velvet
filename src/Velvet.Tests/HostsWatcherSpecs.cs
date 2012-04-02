@@ -9,7 +9,7 @@ using Velvet.Mappings;
 namespace Velvet.Tests
 {
 	[TestFixture]
-	public class HostsWatcherSpecs
+	public sealed class HostsWatcherSpecs
 	{
 		IEnumerable<Mapping> mappings;
 		string tempPath;
@@ -30,6 +30,7 @@ namespace Velvet.Tests
 				streamWriter.WriteLine(@"127.0.0.1 A \.dev$");
 				streamWriter.WriteLine();
 				streamWriter.WriteLine(@"	192.168.0.1		A	     .*\.foo");
+				streamWriter.WriteLine(@"	blog.muonlab.com  		C	     .*\.muon");
 				streamWriter.WriteLine(@" noise that wont parse");
 
 				streamWriter.Flush();
@@ -44,7 +45,7 @@ namespace Velvet.Tests
 		public void ShouldUpdateTwoMappings()
 		{
 			var array = this.mappings.ToArray();
-			Assert.AreEqual(2, array.Length);
+			Assert.AreEqual(3, array.Length);
 		}
 
 		[Test]
@@ -65,6 +66,16 @@ namespace Velvet.Tests
 			// TODO: what is the correct record type and class?
 			var answer = array[1].Answer(new DnsQuestion("baz.bar.foo", RecordType.A, RecordClass.Any)) as ARecord;
 			Assert.AreEqual("192.168.0.1", answer.Address.ToString());
+		}
+
+		[Test]
+		public void ShouldParseCMappingWithWhitespace()
+		{
+			var array = this.mappings.ToArray();
+
+			// TODO: what is the correct record type and class?
+			var answer = array[2].Answer(new DnsQuestion("blog.muon", RecordType.A, RecordClass.Any)) as CNameRecord;
+			Assert.AreEqual("blog.muonlab.com", answer.CanonicalName);
 		}
 
 		[TearDown]
