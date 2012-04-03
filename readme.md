@@ -19,6 +19,8 @@ This means you can access `anything.dev` and it will resolve to your machine. Mu
 
 ## Configuration
 
+### Mappings 
+
 Edit your host file as you normally would, except the additional syntax is now supported:
 
 <pre>
@@ -36,6 +38,10 @@ to map `sausages.com` to `bacon.com`:
 <pre>
 bacon.com C sausages\.com
 </pre>
+
+### Hosts file
+
+If you don't want to use your hosts file to configure Velvet, set the `HostsPath` setting in the `app.config` to a different path. The path can be relative to the Velvet executable or absolute.
 
 ### Limitations
 
