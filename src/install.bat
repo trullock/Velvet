@@ -1,1 +1,1 @@
-call DnsServer.exe install
+call Velvet.exe install

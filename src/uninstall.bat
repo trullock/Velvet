@@ -1,1 +1,1 @@
-call DnsServer.exe uninstall
+call Velvet.exe uninstall
