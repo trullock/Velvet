@@ -12,7 +12,7 @@ namespace Velvet
 		{
 			var lines = file.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-			var lineRegex = new Regex(@"([^\s]+)\s+([^\s]+)\s+([^\s]+)", RegexOptions.Singleline);
+			var lineRegex = new Regex(@"^\s*([^\s]+)\s+([^\s]+)\s*$", RegexOptions.Singleline);
 
 			var mappings = new List<Mapping>();
 
@@ -35,21 +35,11 @@ namespace Velvet
 
 		static Mapping ParseLine(Match match)
 		{
-			switch (match.Groups[2].Value.ToUpperInvariant())
-			{
-				case "A":
-					IPAddress ip;
-					if (IPAddress.TryParse(match.Groups[1].Value, out ip))
-						return new AMapping(match.Groups[3].Value, ip);
-					return null;
+			IPAddress ip;
+			if (IPAddress.TryParse(match.Groups[1].Value, out ip))
+				return new AMapping(match.Groups[2].Value, ip);
 
-				case "C":
-					
-					return new CNameMapping(match.Groups[3].Value, match.Groups[1].Value);
-
-				default:
-					return null;
-			}
+			return new CNameMapping(match.Groups[2].Value, match.Groups[1].Value);
 		}
 	}
 }

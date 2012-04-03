@@ -12,8 +12,8 @@ namespace Velvet.Tests.DnsLookupSpecs
 		protected override void Given()
 		{
 			this.hostsFile = @"
-127.0.0.1 A *.dev
-192.168.0.1	A *.*.dev
+127.0.0.1  *.dev
+192.168.0.1	 *.*.dev
 ";
 		}
 

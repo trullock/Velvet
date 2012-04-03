@@ -8,7 +8,7 @@ namespace Velvet.Tests.HostsWatcherSpecs
 		protected override void Given()
 		{
 			hostsFile = @"
-	blog.muonlab.com  		C	     *.muon
+	blog.muonlab.com  		     *.muon
 ";
 		}
 

@@ -24,25 +24,25 @@ This means you can access `anything.dev` and it will resolve to your machine. Mu
 Edit your host file as you normally would, except the additional syntax is now supported:
 
 <pre>
-&lt;IP|Name&gt; &lt;A|C&gt; &lt;Name pattern&gt;
+&lt;IP|Name&gt; &lt;Name pattern&gt;
 </pre>
 
 For example, to map `anything.dev` to `127.0.0.1`:
 
 <pre>
-127.0.0.1 A *.dev
+127.0.0.1 *.dev
 </pre>
 
 Wildcards (`*`) only match a single subdomain level. To match multiple subdomains, such as `anything.anything.dev` to `127.0.0.1`:
 
 <pre>
-127.0.0.1 A *.*.dev
+127.0.0.1 *.*.dev
 </pre>
 
 To map `sausages.com` to `bacon.com`:
 
 <pre>
-bacon.com C sausages\.com
+bacon.com sausages\.com
 </pre>
 
 ### Hosts file
@@ -51,7 +51,7 @@ If you don't want to use your hosts file to configure Velvet, set the `HostsPath
 
 ### Limitations
 
-Currently, only IPv4 A and CName records are supported.
+Currently, only IPv4 `A` and `CName` records are supported.
 
 ## Usage
 

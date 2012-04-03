@@ -8,14 +8,14 @@ namespace Velvet.Tests.HostsWatcherSpecs
 		protected override void Given()
 		{
 			hostsFile = @"
-127.0.0.1 A *.dev
-	192.168.0.1		A	     *.foo
+127.0.0.1 *.dev
+	192.168.0.1		     *.foo
  noise that wont parse
 ";
 		}
 
 		[Then]
-		public void ShouldUpdateThreeMappings()
+		public void ShouldUpdateTwoMappings()
 		{
 			Assert.AreEqual(2, this.mappings.Length);
 		}
