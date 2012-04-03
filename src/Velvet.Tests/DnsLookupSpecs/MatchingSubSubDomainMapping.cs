@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Velvet.Tests.DnsLookupSpecs
 {
-	internal sealed class SubSubDomains : Spec
+	internal sealed class MatchingSubSubDomainMapping : Spec
 	{
 		DnsMessageBase response;
 
@@ -13,9 +13,7 @@ namespace Velvet.Tests.DnsLookupSpecs
 		{
 			this.hostsFile = @"
 127.0.0.1 A *.dev
-	192.168.0.1		A	     *.foo
-	192.168.0.1		A	     *.dev
- noise that wont parse
+192.168.0.1	A *.*.dev
 ";
 		}
 
@@ -31,9 +29,11 @@ namespace Velvet.Tests.DnsLookupSpecs
 		}
 
 		[Then]
-		public void SingleWildcardsShouldntMatchSubSubDomains()
+		public void ShouldMatch()
 		{
-			Assert.AreEqual(ReturnCode.ServerFailure, response.ReturnCode);
+			var dnsMessage = response as DnsMessage;
+			var aRecord = dnsMessage.AnswerRecords[0] as ARecord;
+			Assert.AreEqual("192.168.0.1", aRecord.Address.ToString());
 		}
 	}
 }

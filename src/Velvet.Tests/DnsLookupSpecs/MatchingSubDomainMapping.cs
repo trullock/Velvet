@@ -1,4 +1,3 @@
-using System;
 using System.Net;
 using System.Net.Sockets;
 using ARSoft.Tools.Net.Dns;
@@ -6,7 +5,7 @@ using NUnit.Framework;
 
 namespace Velvet.Tests.DnsLookupSpecs
 {
-	internal sealed class DnsLookupSpecs : Spec
+	internal sealed class MatchingSubDomainMapping : Spec
 	{
 		DnsMessageBase response;
 
