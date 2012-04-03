@@ -27,13 +27,19 @@ Edit your host file as you normally would, except the additional syntax is now s
 &lt;IP|Name&gt; &lt;A|C&gt; &lt;Name pattern&gt;
 </pre>
 
-for example, to map `anything.dev` to `127.0.0.1`:
+For example, to map `anything.dev` to `127.0.0.1`:
 
 <pre>
 127.0.0.1 A *.dev
 </pre>
 
-to map `sausages.com` to `bacon.com`:
+Wildcards (`*`) only match a single subdomain level. To match multiple subdomains, such as `anything.anything.dev` to `127.0.0.1`:
+
+<pre>
+127.0.0.1 A *.*.dev
+</pre>
+
+To map `sausages.com` to `bacon.com`:
 
 <pre>
 bacon.com C sausages\.com
