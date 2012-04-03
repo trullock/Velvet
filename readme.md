@@ -21,7 +21,7 @@ This means you can access `anything.dev` and it will resolve to your machine. Mu
 
 ### Mappings 
 
-Edit your host file as you normally would, except the additional syntax is now supported:
+Edit your host file as you normally would, except you now have the benefit of pattern matching syntax on the name parameter:
 
 <pre>
 &lt;IP|Name&gt; &lt;Name pattern&gt;
@@ -42,7 +42,7 @@ Wildcards (`*`) only match a single subdomain level. To match multiple subdomain
 To map `sausages.com` to `bacon.com`:
 
 <pre>
-bacon.com sausages\.com
+bacon.com sausages.com
 </pre>
 
 ### Hosts file
