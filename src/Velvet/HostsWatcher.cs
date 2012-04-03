@@ -13,6 +13,7 @@ namespace Velvet
 		public HostsWatcher(string path)
 			: this(new HostsParser(), path)
 		{
+			this.LoadMappings(path);
 		}
 
 		public HostsWatcher(IHostsParser parser, string path)
@@ -32,10 +33,15 @@ namespace Velvet
 
 		void WatcherChanged(object sender, FileSystemEventArgs e)
 		{
-			var readFile = ReadFile(e.FullPath);
-			var enumerable = parser.ParseFile(readFile);
-			if(MappingsChanged != null)
-				MappingsChanged(new MappingEventArgs(enumerable));
+			LoadMappings(e.FullPath);
+		}
+
+		void LoadMappings(string path)
+		{
+			var readFile = ReadFile(path);
+			var enumerable = this.parser.ParseFile(readFile);
+			if(this.MappingsChanged != null)
+				this.MappingsChanged(new MappingEventArgs(enumerable));
 		}
 
 		static string ReadFile(string path)
