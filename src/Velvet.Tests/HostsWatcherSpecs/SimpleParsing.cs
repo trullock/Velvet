@@ -1,9 +1,9 @@
 ﻿using ARSoft.Tools.Net.Dns;
 using NUnit.Framework;
 
-namespace Velvet.Tests
+namespace Velvet.Tests.HostsWatcherSpecs
 {
-	public sealed class HostsWatcherSpecs : Spec
+	public sealed class SimpleParsing : Spec
 	{
 		protected override void Given()
 		{
@@ -17,7 +17,7 @@ namespace Velvet.Tests
 
 
 		[Then]
-		public void ShouldUpdateTwoMappings()
+		public void ShouldUpdateThreeMappings()
 		{
 			Assert.AreEqual(3, this.mappings.Length);
 		}
@@ -34,7 +34,7 @@ namespace Velvet.Tests
 		public void ShouldParseAMappingWithWhitespace()
 		{
 			// TODO: what is the correct record type and class?
-			var answer = this.mappings[1].Answer(new DnsQuestion("baz.bar.foo", RecordType.A, RecordClass.Any)) as ARecord;
+			var answer = this.mappings[1].Answer(new DnsQuestion("bar.foo", RecordType.A, RecordClass.Any)) as ARecord;
 			Assert.AreEqual("192.168.0.1", answer.Address.ToString());
 		}
 

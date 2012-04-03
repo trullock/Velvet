@@ -10,7 +10,7 @@ namespace Velvet.Mappings
 		protected Mapping(string pattern)
 		{
 			var escaped = Regex.Escape(pattern);
-			var regStr = "^" + escaped.Replace("\\*", ".*") + "$";
+			var regStr = "^" + escaped.Replace("\\*", "([^\\.]*)") + "$";
 
 			this.pattern = new Regex(regStr, RegexOptions.IgnoreCase);
 		}

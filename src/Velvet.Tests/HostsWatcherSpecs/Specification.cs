@@ -4,7 +4,7 @@ using System.Threading;
 using NUnit.Framework;
 using Velvet.Mappings;
 
-namespace Velvet.Tests
+namespace Velvet.Tests.HostsWatcherSpecs
 {
 	[TestFixture]
 	public abstract class Spec

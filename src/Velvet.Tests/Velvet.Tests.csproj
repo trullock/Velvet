@@ -42,10 +42,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HostsWatcherSpecs.cs" />
+    <Compile Include="DnsLookupSpecs\Specification.cs" />
+    <Compile Include="DnsLookupSpecs\SubSubDomains.cs" />
+    <Compile Include="HostsWatcherSpecs\SimpleParsing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DnsLookupSpecs.cs" />
-    <Compile Include="Specification.cs" />
+    <Compile Include="DnsLookupSpecs\DnsLookupSpecs.cs" />
+    <Compile Include="HostsWatcherSpecs\Specification.cs" />
     <Compile Include="ThenAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
