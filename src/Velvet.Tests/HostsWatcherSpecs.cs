@@ -27,10 +27,10 @@ namespace Velvet.Tests
 
 			using (var streamWriter = File.CreateText(this.tempPath))
 			{
-				streamWriter.WriteLine(@"127.0.0.1 A \.dev$");
+				streamWriter.WriteLine(@"127.0.0.1 A *.dev");
 				streamWriter.WriteLine();
-				streamWriter.WriteLine(@"	192.168.0.1		A	     .*\.foo");
-				streamWriter.WriteLine(@"	blog.muonlab.com  		C	     .*\.muon");
+				streamWriter.WriteLine(@"	192.168.0.1		A	     *.foo");
+				streamWriter.WriteLine(@"	blog.muonlab.com  		C	     *.muon");
 				streamWriter.WriteLine(@" noise that wont parse");
 
 				streamWriter.Flush();

@@ -9,7 +9,10 @@ namespace Velvet.Mappings
 
 		protected Mapping(string pattern)
 		{
-			this.pattern = new Regex(pattern, RegexOptions.IgnoreCase);
+			var escaped = Regex.Escape(pattern);
+			var regStr = "^" + escaped.Replace("\\*", ".*") + "$";
+
+			this.pattern = new Regex(regStr, RegexOptions.IgnoreCase);
 		}
 
 		public abstract DnsRecordBase Answer(DnsQuestion question);
