@@ -1,6 +1,6 @@
 # Velvet DNS Server
 
-A simple DNS server that adds regex matching functionality to your standard hosts file.
+A simple DNS server that adds pattern matching functionality to your standard hosts file.
 
 ## Why
 
@@ -24,13 +24,13 @@ This means you can access `anything.dev` and it will resolve to your machine. Mu
 Edit your host file as you normally would, except the additional syntax is now supported:
 
 <pre>
-&lt;IP|Name&gt; &lt;A|C&gt; &lt;Name Regex&gt;
+&lt;IP|Name&gt; &lt;A|C&gt; &lt;Name pattern&gt;
 </pre>
 
 for example, to map `anything.dev` to `127.0.0.1`:
 
 <pre>
-127.0.0.1 A \.dev$
+127.0.0.1 A *.dev
 </pre>
 
 to map `sausages.com` to `bacon.com`:
