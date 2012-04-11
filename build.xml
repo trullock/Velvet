@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Project DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">    
+    <Target Name="Default" DependsOnTargets="Test"></Target>
+	
+    <Target Name="Build">
+        <ItemGroup>
+            <Tests Include="src\Velvet.Tests\Velvet.Tests.csproj"/>
+            <Proj Include="src\Velvet\Velvet.csproj"/>
+        </ItemGroup>
+        <PropertyGroup>
+            <OutputPath>..\..\build</OutputPath>
+        </PropertyGroup>
+        <MSBuild Projects="@(Tests)" Targets="Clean;Build" Properties="Configuration=$(Configuration);OutputPath=$(OutputPath)\tests"/>
+        <MSBuild Projects="@(Tests)" Targets="Clean;Build" Properties="Configuration=Release;OutputPath=$(OutputPath)\release"/>
+    </Target>
+
+    <Target Name="Test" DependsOnTargets="Build">
+        <!-- Run tests against 4.0 and 3.5 assemblies; must use CLR4 and 2.0 XUnit otherwise some 3.5 tests will fail -->
+        
+    </Target>
+
+</Project>

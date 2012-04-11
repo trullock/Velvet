@@ -6,6 +6,7 @@ Thumbs.db
 *.suo
 [Bb]in
 [Dd]ebug*/
+build
 obj/
 _ReSharper*/
 *.user
