@@ -7,18 +7,19 @@ namespace Velvet
 	{
 		readonly FileSystemWatcher watcher;
 		readonly IHostsParser parser;
+		readonly string path;
 
 		public event MappingsChangedHandler MappingsChanged;
 
 		public HostsWatcher(string path)
 			: this(new HostsParser(), path)
 		{
-			this.LoadMappings(path);
 		}
 
 		public HostsWatcher(IHostsParser parser, string path)
 		{
 			this.parser = parser;
+			this.path = path;
 
 			var directoryName = Path.GetDirectoryName(path);
 			var fileName = Path.GetFileName(path);
@@ -27,7 +28,7 @@ namespace Velvet
 			watcher.NotifyFilter = NotifyFilters.LastWrite;
 
 			this.watcher.Changed += this.WatcherChanged;
-
+			
 			watcher.EnableRaisingEvents = true;
 		}
 
@@ -42,6 +43,11 @@ namespace Velvet
 			var enumerable = this.parser.ParseFile(readFile);
 			if(this.MappingsChanged != null)
 				this.MappingsChanged(new MappingEventArgs(enumerable));
+		}
+
+		public void RefreshFile()
+		{
+			this.LoadMappings(this.path);
 		}
 
 		static string ReadFile(string path)

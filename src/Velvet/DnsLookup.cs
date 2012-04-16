@@ -22,6 +22,7 @@ namespace Velvet
 		{
 			this.hostsWatcher = watcher;
 			hostsWatcher.MappingsChanged += this.HostsWatcherMappingsChanged;
+			hostsWatcher.RefreshFile();
 		}
 
 		void HostsWatcherMappingsChanged(MappingEventArgs args)
