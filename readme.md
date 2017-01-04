@@ -4,7 +4,7 @@ A simple DNS server that adds pattern matching functionality to your standard ho
 
 ## Why
 
-Are you fed up with maintaining a host file that looks like this:
+Are you fed up with maintaining a host file that looks like this?
 
 <pre>
 127.0.0.1 SiteA
