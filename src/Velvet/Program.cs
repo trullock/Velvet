@@ -25,7 +25,7 @@ namespace Velvet
 					s.WhenStarted(r => r.Start());
 					s.WhenStopped(r => r.Stop());
 				});
-				x.SetDescription("Provides regex capabilities in you hosts file");
+				x.SetDescription("Provides regex capabilities in your hosts file");
 				x.SetDisplayName("Velvet");
 				x.SetServiceName("Velvet");
 			});
